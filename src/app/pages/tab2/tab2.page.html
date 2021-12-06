@@ -1,0 +1,19 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+      Mis noticias
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- 
+    Si la lista está vacía se muestra este ensaje
+   -->
+  <ion-item *ngIf="gestionNoticiasLeer.getNoticias().length==0" color="primary">
+    No hay noticias para leer
+  </ion-item>
+
+  <!-- Se visualiza la lista de noticias para leer que se obtienen del servicio que las gestiona -->
+  <app-noticias [listaNoticias]="gestionNoticiasLeer.getNoticias()"></app-noticias>
+</ion-content>
