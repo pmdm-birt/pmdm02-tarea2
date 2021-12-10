@@ -34,6 +34,10 @@ export class GestionNoticiasLeerService {
 
   // Se añade la noticia al array y se actualiza en Storage
   public addNoticia(item) {
+      // copiar item
+      let itemString = JSON.stringify(item);
+      item = JSON.parse(itemString);
+      
       this.noticiasLeer.push(item);
       this.gestionStorage.setObject("noticiasLeer", this.noticiasLeer);
       // console.log(this.noticiasLeer);
@@ -42,8 +46,11 @@ export class GestionNoticiasLeerService {
   // Se busca la noticia en el array y se borra
   public borrarNoticia(item) {
     let indice = this.buscar(item);
-    this.noticiasLeer.splice(indice, 1);
-    this.gestionStorage.setObject("noticiasLeer", this.noticiasLeer);
+
+    if (indice != -1) {
+      this.noticiasLeer.splice(indice, 1);
+      this.gestionStorage.setObject("noticiasLeer", this.noticiasLeer);
+    }
     // console.log(this.noticiasLeer);
   }
 
